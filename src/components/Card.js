@@ -7,9 +7,7 @@ const Card = ({ image, id, parentCallbacks, score }) => {
     if (chosen === false) {
       setChosen(true)
       parentCallbacks.updateScore()
-      console.log(score)
     } else {
-      console.log('reset')
       parentCallbacks.resetScore()
     }
   }

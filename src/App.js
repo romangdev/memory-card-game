@@ -4,15 +4,11 @@ import Card from './components/Card'
 
 const App = () => {
   const [score, setScore] = useState(0)
-  const resetChosen = false
+  const [bestScore, setBestScore] = useState(0)
 
   const parentCallbacks ={
-    updateScore: () => {
-      setScore(score + 1)
-    },
-    resetScore: () => {
-      setScore(0)
-    },
+    updateScore: () => setScore(score + 1),
+    resetScore: () => setScore(0),
   }
 
   const cardArray = []
@@ -20,17 +16,26 @@ const App = () => {
     cardArray.push(<Card id={i} image={i} parentCallbacks={parentCallbacks} score={score} />)
   }
 
-  // useEffect(score => {
-  //   if (score === 0) {
-      
-  //   }
-  // }, [score])
+  useEffect(() => {
+    if (score > bestScore) setBestScore(score)
+  }, [score, bestScore])
 
   return (
     <div className="App">
-      {cardArray.map((card, i) => {
-        return <div key={i}>{card}</div>
-      })}
+      <header>
+        <h1>Memory Game</h1>
+        <div className='score-display'>
+          <p>Score: {score}</p>
+          <p>Best Score: {bestScore}</p>
+        </div>
+      </header>
+      <main>
+        <div className='card-board'>
+          {cardArray.map((card, i) => {
+            return <div key={i}>{card}</div>
+          })}
+        </div>
+      </main>
     </div>
   );
 }
