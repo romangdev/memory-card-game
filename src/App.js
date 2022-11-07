@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import Card from './components/Card'
 
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
     cards.push(<Card id={i} image={i} parentCallbacks={parentCallbacks} score={score} />)
   }
 
-  const [cardArray] = useState(cards)
+  const cardArray = cards
   const [displayedCardOrder, setDisplayedCardOrder] = useState([])
 
   const setRandomCardOrder = (cardArray) => {
@@ -43,7 +43,7 @@ const App = () => {
 
   useEffect(() => {
     setDisplayedCardOrder(setRandomCardOrder(cardArray))
-  }, [cardArray, score])
+  }, [score])
 
   return (
     <div className="App">
@@ -60,11 +60,6 @@ const App = () => {
           {displayedCardOrder.map(card => {
             return <div key={card.props.id}>{card}</div>
           })}
-
-          {/* {cardArray.map((card, i) => {
-            console.log(card)
-            return <div key={i}>{card}</div>
-          })} */}
         </div>
       </main>
     </div>

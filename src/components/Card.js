@@ -4,7 +4,6 @@ const Card = ({ image, id, parentCallbacks, score }) => {
   const [chosen, setChosen] = useState(false)
 
   const handleClick = () => {
-    console.log('Card clicked id:', id)
     if (chosen === false) {
       setChosen(true)
       parentCallbacks.updateScore()
@@ -14,7 +13,6 @@ const Card = ({ image, id, parentCallbacks, score }) => {
   }
 
   useEffect(() => {
-    console.log('score is 0')
     if (score === 0) {
       setChosen(false)
     }
