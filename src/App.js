@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import Card from './components/Card'
 
-function App() {
+const App = () => {
+  const [score, setScore] = useState(0)
+
+  const cardArray = []
+  for (let i = 0; i < 12; i++) {
+    cardArray.push(<Card id={i} image={i} />)
+  }
+
+  const resetChosen = () => {
+
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {cardArray.map((card, i) => {
+        return <div key={i}>{card}</div>
+      })}
     </div>
   );
 }
