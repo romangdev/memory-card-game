@@ -1,10 +1,11 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import Card from './components/Card'
 
 const App = () => {
   const [score, setScore] = useState(0)
   const [bestScore, setBestScore] = useState(0)
+  // const [displayedCardOrder, setDisplayedCardOrder] = useState([])
 
   const parentCallbacks ={
     updateScore: () => setScore(score + 1),
@@ -16,9 +17,31 @@ const App = () => {
     cardArray.push(<Card id={i} image={i} parentCallbacks={parentCallbacks} score={score} />)
   }
 
+  // const setRandomCardOrder = (cardArray) => {
+  //   let usedIndexes = []
+  //   let randomIndex
+  //   let displayedCardOrder = []
+
+  //   for (let i = 0; i < cardArray.length; i++) {
+  //     do {
+  //       randomIndex = Math.floor(Math.random() * 12)
+  //       if (!usedIndexes.includes(randomIndex)) {
+  //         displayedCardOrder.push(cardArray[randomIndex])
+  //       }
+  //     } while (usedIndexes.includes(randomIndex))
+      
+  //     usedIndexes.push(randomIndex)
+  //   }
+  //   return displayedCardOrder
+  // }
+
   useEffect(() => {
     if (score > bestScore) setBestScore(score)
   }, [score, bestScore])
+
+  // useEffect(() => {
+  //   setDisplayedCardOrder(setRandomCardOrder(cardArray))
+  // }, [cardArray])
 
   return (
     <div className="App">
@@ -30,8 +53,14 @@ const App = () => {
         </div>
       </header>
       <main>
+        <p>Click each image only once to earn points. Don't click any images more than once!</p>
         <div className='card-board'>
+          {/* {displayedCardOrder.map(card => {
+            return <div key={card.props.id}>{card}</div>
+          })} */}
+
           {cardArray.map((card, i) => {
+            console.log(card)
             return <div key={i}>{card}</div>
           })}
         </div>
