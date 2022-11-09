@@ -11,9 +11,23 @@ const App = () => {
     resetScore: () => setScore(0),
   }
 
+  const animalTypes = [
+    {name: 'deer'},
+    {name: 'flamingo'},
+    {name: 'fox'},
+    {name: 'hamster'},
+    {name: 'leopard'},
+    {name: 'lion'},
+    {name: 'parrot'},
+    {name: 'pug'},
+    {name: 'rabbit'},
+    {name: 'racoon'},
+    {name: 'tiger'},
+    {name: 'turtle'}
+  ]
   const cards = []
   for (let i = 0; i < 12; i++) {
-    cards.push(<Card id={i} image={i} parentCallbacks={parentCallbacks} score={score} />)
+    cards.push(<Card id={i} animal={animalTypes[i]} parentCallbacks={parentCallbacks} score={score} />)
   }
 
   const cardArray = cards

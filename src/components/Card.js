@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-const Card = ({ image, id, parentCallbacks, score }) => {
+const Card = ({ animal, id, parentCallbacks, score }) => {
   const [chosen, setChosen] = useState(false)
 
   const handleClick = () => {
@@ -19,7 +19,10 @@ const Card = ({ image, id, parentCallbacks, score }) => {
   }, [score])
 
   return (
-    <div onClick={handleClick}>{image}</div>
+    <div onClick={handleClick}>
+      <img src={require(`./images/${animal.name}.jpg`)} alt=""></img>
+      <h2>{animal.name}</h2>
+    </div>
   )
 }
 
